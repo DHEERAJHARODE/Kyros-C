@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Homepage</title>
+    <style>
+        *{
+            /* margin: 0;
+            padding: 0; */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eee;
+            padding: 10px 20px;
+        }
+
+        /* Navbar links styling */
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+            margin-left: 20px;
+            padding: 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            position: relative; /* Needed for positioning dropdowns */
+        }
+
+        .navbar a:hover {
+            background-color: #eee;
+            border-radius: 5px;
+        }
+
+        /* Dropdown container */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #eee;
+            color: #fff;
+        }
+
+        /* Show dropdown when hovering over parent */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main content section styling */
+        .content {
+            height: 60vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: #fff;
+            margin: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Left side content */
+        .content-left {
+            max-width: 40%;
+        }
+
+        .content-left h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .content-left p {
+            font-size: 18px;
+            color: #555;
+            text-transform: capitalize;
+            word-spacing: 4px;
+            letter-spacing: 3px;
+        }
+
+        /* Logo styling */
+        .logo {
+            padding-left: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            padding: 20px;
+        }
+        .contact_btn{
+            padding: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #fff;
+            background-color: #333;
+            border-radius: 5px;
+        }
+        /* Cards Section Styling */
+.cards-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 40px 0;
+    padding: 0 20px;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
+
+/* Card Styling */
+.card {
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Logo */
+.card-logo {
+    margin-bottom: 20px;
+}
+
+.card-logo-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+/* Card Content */
+.card-content h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+/* Support Section Styling */
+.support-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    margin: 40px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.support-section h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.support-section p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+/* Our Services Section */
+.services-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.services-section h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Use CSS Grid for the service rows */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 40px; /* Space between the grid items */
+    padding: 0 20px;
+}
+
+/* Adjust styles for each service row */
+.service-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.service-row.reverse {
+    flex-direction: row-reverse; /* Reverse the order for alternating layout */
+}
+
+.service-image {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.service-image img {
+    width: 100%; /* Set the image to 100% of the container width */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Preserve aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.service-text h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.service-text p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.read-more:hover {
+    background-color: #0056b3;
+}
+/* Footer Section */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns layout */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left, .footer-right {
+    padding: 20px;
+}
+
+.footer-logo img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.footer-address p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.footer-address a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-address a:hover {
+    color: #007BFF;
+}
+
+.footer-right h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer-right p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.footer-right form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-right input[type="email"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 70%;
+    border: none;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.footer-right button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-right button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design: For smaller screens */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr; /* Stack the columns on top of each other */
+        text-align: center;
+    }
+
+    .footer-right form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-right input[type="email"] {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .footer-right button {
+        width: 80%;
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .service-grid {
+        grid-template-columns: 1fr; /* Switch to 1 column on smaller screens */
+    }
+
+    .service-image img {
+        max-width: 100%; /* Ensure images are responsive */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Section (Top) -->
+    <div class="navbar">
+        <!-- Logo Section -->
+        <div class="logo">
+            <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/05/united-consulting_logo.png" alt="logo" width="200">
+        </div>
+
+        <!-- Navbar links -->
+        <div>
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+
+            <!-- Life Science Dropdown -->
+            <div class="dropdown">
+                <a href="#">Life Science</a>
+                <div class="dropdown-content">
+                    <a href="#">R&D Support</a>
+                    <a href="#">Validation & Verification Services</a>
+                    <a href="#">Manufacturing Support</a>
+                    <a href="#">Quality & Risk Management</a>
+                </div>
+            </div>
+
+            <!-- Information Technology Dropdown -->
+            <div class="dropdown">
+                <a href="#">Information Technology</a>
+                <div class="dropdown-content">
+                    <a href="#">IT Staffing</a>
+                    <a href="#">Statistics and Data Management</a>
+                </div>
+            </div>
+
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="content">
+        <!-- Left Side Content -->
+        <div class="content-left">
+            <h1>WELCOME TO UNITED CONSULTING HUB</h1>
+            <p>We are a leading consulting firm providing a wide range of services to businesses in Life Science and IT industries.</p>
+            <button class="contact_btn">Contact us ></button>
+        </div>
+
+        <!-- Optional: Right Side content (e.g., Image or Additional Info) -->
+        <div class="content-right">
+            <!-- You can add an image or other content here -->
+        </div>
+    </div>
+    <!-- Cards Section -->
+<div class="cards-container">
+    <!-- Card 1: Why United Consulting -->
+    <div class="card">
+        <div class="card-logo">
+            <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/research-85x85.png" alt="Company Logo" class="card-logo-img">
+        </div>
+        <div class="card-content">
+            <h3>Why United Consulting</h3>
+            <p>Our extensive experience supporting the pharmaceutical and life science industry can be leveraged to support all your challenges across quality, compliance, and inspection readiness.</p>
+        </div>
+    </div>
+
+    <!-- Card 2: Modes for Collaboration -->
+    <div class="card">
+        <div class="card-logo">
+            <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/accuracy-85x85.png" alt="Company Logo" class="card-logo-img">
+        </div>
+        <div class="card-content">
+            <h3>Modes for Collaboration</h3>
+            <p>United Consulting can deliver flexible project models whether Time and Material or Turn Key, through a completely onsite mode, hybrid, or entirely remote, depending on the project needs.</p>
+        </div>
+    </div>
+
+    <!-- Card 3: Project Delivery -->
+    <div class="card">
+        <div class="card-logo">
+            <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/share-85x85.png" alt="Company Logo" class="card-logo-img">
+        </div>
+        <div class="card-content">
+            <h3>Project Delivery</h3>
+            <p>United has proven ability to deliver high quality solutions at competitive market rates to ensure the highest level of quality, compliance, and inspection readiness.</p>
+        </div>
+    </div>
+</div>
+<!-- UNITED CAN SUPPORT Section -->
+<div class="support-section">
+    <h2>UNITED CAN SUPPORT ACROSS ALL AREAS OF COMPLIANCE THROUGH OUR DIFFERENT SERVICES/BUSINESS UNITS</h2>
+</div>
+<!-- Our Services Section -->
+<!-- Our Services Section -->
+<div class="services-section">
+    <h2>Our Services</h2>
+
+    <!-- Service Grid Layout -->
+    <div class="service-grid">
+        <!-- Service 1: Validation & Verification Services -->
+        <div class="service-row">
+            <div class="service-image">
+                <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/r-d-300x400.jpg" alt="Validation & Verification Services">
+            </div>
+            <div class="service-text">
+                <h3>Validation & Verification Services</h3>
+                <p>Our consulting firm provides a wide range of validation and verification services specifically tailored for the pharmaceutical, biotechnology & medical device industries.</p>
+                <a href="#" class="read-more">READ MORE</a>
+            </div>
+        </div>
+
+        <!-- Service 2: Manufacturing Equipment Support -->
+        <div class="service-row reverse">
+            <div class="service-text">
+                <h3>Manufacturing Equipment Support</h3>
+                <p>Our consulting firm provides a wide range of manufacturing equipment support services specifically tailored for the pharmaceutical and life science industry.</p>
+                <a href="#" class="read-more">READ MORE</a>
+            </div>
+            <div class="service-image">
+                <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/manufactoring-300x350.jpeg" alt="Manufacturing Equipment Support">
+            </div>
+        </div>
+
+        <!-- Service 3: Quality & Risk Management -->
+        <div class="service-row">
+            <div class="service-image">
+                <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/QA-Risk-150x170.jpeg" alt="Quality & Risk Management">
+            </div>
+            <div class="service-text">
+                <h3>Quality & Risk Management</h3>
+                <p>We are committed to helping businesses of all sizes and industries achieve their quality and risk management goals.</p>
+                <a href="#" class="read-more">READ MORE</a>
+            </div>
+        </div>
+
+        <!-- Service 4: R&D Support -->
+        <div class="service-row reverse">
+            <div class="service-text">
+                <h3>R&D Support</h3>
+                <p>Our R&D support services can help our clients achieve their innovation goals and develop new products and strategies while adhering to regulatory requirements.</p>
+                <a href="#" class="read-more">READ MORE</a>
+            </div>
+            <div class="service-image">
+                <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/validation-150x170.jpeg" alt="R&D Support">
+            </div>
+        </div>
+
+        <!-- Service 5: Statistics & Data Management -->
+        <div class="service-row">
+            <div class="service-image">
+                <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/IT2-300x465.jpeg" alt="Statistics & Data Management">
+            </div>
+            <div class="service-text">
+                <h3>Statistics & Data Management</h3>
+                <p>We offer comprehensive SAS and Data Management solutions from the clinical space through manufacturing settings and can manage, analyze and interpret complex data sets using various SAS tools.</p>
+                <a href="#" class="read-more">READ MORE</a>
+            </div>
+        </div>
+
+        <!-- Service 6: Information Technology Services -->
+        <div class="service-row reverse">
+            <div class="service-text">
+                <h3>Information Technology Services</h3>
+                <p>United Consulting offers a diverse range of IT solutions to meet the specific needs of our clients. Whether it's IT Migration and upgrades, Infrastructure Qualification, software development, cybersecurity, data analytics, or cloud computing, United can support.</p>
+                <a href="#" class="read-more">READ MORE</a>
+            </div>
+            <div class="service-image">
+                <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/03/IT-300x465.jpeg" alt="Information Technology Services">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Section -->
+<div class="footer">
+    <div class="footer-container">
+        <!-- Left Side: Logo & Address -->
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="https://unitedconsultinghub.com/wp-content/uploads/2023/05/united-consulting_logo.png" alt="Company Logo" width="150">
+            </div>
+            <div class="footer-address">
+                <p>214 Bridge St, Metuchen, NJ 08840</p>
+                <p>Phone: 7792-(UNITED) (7792864833)</p>
+                <p>Email: <a href="mailto:info@unitedconsultinghub.com">info@unitedconsultinghub.com</a></p>
+            </div>
+        </div>
+
+        <!-- Right Side: Newsletter Subscription -->
+        <div class="footer-right">
+            <h3>Newsletter</h3>
+            <p>Subscribe to our newsletter for discounts, specials, and more! We value your privacy.</p>
+            <form action="#" method="post">
+                <input type="email" placeholder="Enter Your E-mail" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
